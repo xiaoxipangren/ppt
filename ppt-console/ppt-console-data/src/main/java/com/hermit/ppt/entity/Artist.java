@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "actress")
+@Table(name = "artist")
 public class Artist extends BaseEntity{
 
     @Column
@@ -30,7 +30,7 @@ public class Artist extends BaseEntity{
     @Column
     private String avatar;
 
-    @ManyToMany(mappedBy = "actresses")
+    @ManyToMany(mappedBy = "artists")
     private List<Art> arts;
 
 }

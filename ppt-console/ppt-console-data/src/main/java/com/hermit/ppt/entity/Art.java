@@ -16,23 +16,13 @@ public class Art extends BaseEntity{
     private String code;
 
     @Column
-    private LocalDate release;
+    private LocalDate releaseDate;
 
     @Column
-    private long size;
+    private int last;
 
     @Column
     private String cover;
-
-    @Column
-    private String path;
-
-    @Column
-    private boolean censored;
-
-    @Column
-    @Convert(converter = StringListConverter.class)
-    private List<String> snapshots;
 
     @ManyToOne
     @JoinColumn(name = "vendor_id")
@@ -52,10 +42,8 @@ public class Art extends BaseEntity{
     @ManyToMany(mappedBy = "arts")
     private List<Artist> artists;
 
-    @ManyToOne
-    @JoinColumn(name = "torrent_id")
-    private Torrent torrent;
 
-
+    @OneToMany(mappedBy = "art",cascade = CascadeType.DETACH)
+    private List<Distro> distros;
 
 }
