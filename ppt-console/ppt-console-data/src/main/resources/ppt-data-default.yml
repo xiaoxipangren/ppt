@@ -1,0 +1,10 @@
+#spring:
+#  datasource:
+#    driver-class-name: org.sqlite.JDBC
+#    url: jdbc:sqlite:db/data.db
+#    password: pass
+#    username: user
+#  jpa:
+#    database-platform: org.hibernate.community.dialect.SQLiteDialect
+#    generate-ddl: true
+#    show-sql: true

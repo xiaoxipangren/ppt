@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DateUtils {
-    private final static Map<String, ChronoUnit> DATE_UNITS = new HashMap<>(){
+    private final static Map<String, ChronoUnit> DATE_UNITS = new HashMap<String,ChronoUnit>(){
         {
             put("年",ChronoUnit.YEARS);
             put("月",ChronoUnit.MONTHS);

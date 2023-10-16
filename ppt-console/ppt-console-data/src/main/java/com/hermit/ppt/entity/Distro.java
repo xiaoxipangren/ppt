@@ -1,13 +1,17 @@
 package com.hermit.ppt.entity;
 
 import com.hermit.ppt.converter.StringListConverter;
-import com.hermit.ppt.enums.ArtType;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+import java.util.*;
 
 @Data
+@SuperBuilder
+@NoArgsConstructor
 @Entity
 @Table(name = "distro")
 public class Distro extends BaseEntity{
@@ -16,21 +20,43 @@ public class Distro extends BaseEntity{
     private long size;
 
     @Column
-    private String path;
+    private String filename;
 
     @Column
-    private ArtType type;
+    private String title;
+
+    @Column
+    private boolean censored=true;
+
+    @Column
+    private String resolution;
+
+    @Column
+    private String codec;
 
     @Column
     @Convert(converter = StringListConverter.class)
-    private List<String> snapshots;
+    private Set<String> snapshots = new HashSet<>();
 
-
-    @ManyToOne
-    @JoinColumn(name = "art_id")
+    @ManyToOne(targetEntity = Art.class,cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @JoinColumn(name = "art_id",referencedColumnName = "id")
     private Art art;
 
-    @ManyToOne
-    @JoinColumn(name = "torrent_id")
+    @ManyToOne(targetEntity = Torrent.class,cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @JoinColumn(name = "torrent_id",referencedColumnName = "id")
     private Torrent torrent;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Distro distro)) return false;
+        if (!super.equals(o)) return false;
+        return getSize() == distro.getSize() && isCensored() == distro.isCensored() && Objects.equals(getName(), distro.getName()) && Objects.equals(getResolution(), distro.getResolution()) && Objects.equals(getCodec(), distro.getCodec());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(),getName(), getSize(), isCensored(), getResolution(), getCodec());
+    }
 }

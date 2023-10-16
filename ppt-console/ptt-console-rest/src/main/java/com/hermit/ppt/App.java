@@ -1,4 +1,4 @@
-package com.hermit.ptt;
+package com.hermit.ppt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

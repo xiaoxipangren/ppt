@@ -1,19 +1,28 @@
 package com.hermit.ppt.entity;
 
+import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Generated;
 import org.springframework.data.annotation.*;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.MappedSuperclass;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import jakarta.persistence.*;
+import jakarta.persistence.AccessType;
 import java.time.LocalDateTime;
 
 @Data
+@SuperBuilder
 @MappedSuperclass
+@NoArgsConstructor
+@Access(AccessType.FIELD)
+@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity implements IEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
     @CreatedDate

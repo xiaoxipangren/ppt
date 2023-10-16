@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:./db/data.db
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+ppt:
+  site:
+    sites:
+      mt:
+        schema: https
+        domain: kp.m-team.cc
+        home: index.php
+        login: login.php
+        user: streamhermit
+        password: zhq17681803790
+        start: /adult.php
+        cookies:
+          cf_clearance: xnHEC1iaiwY4JnLs5yWXbFOZA8w4UX5cPpaSfERluBE-1687564385-0-150
+          tp: ZmMxYTJkMjNlN2U4ODk0NTkwOTkxZjRmNjZkN2I2YTJhNjc5ZDllOQ%3D%3D
+        headers:
+          User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.55
